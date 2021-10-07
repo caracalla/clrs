@@ -12,6 +12,8 @@ namespace clrs {
 			void initRandom() {
 				std::random_device rd;
 				mt = std::mt19937(rd());
+
+				randomReady = true;
 			}
 		}
 

@@ -1,37 +1,69 @@
 #include "array.h"
+#include "heap.h"
 #include "random.h"
 #include "searching.h"
 #include "sorting.h"
 
+namespace clrs {
+	void demoInsertionSort() {
+		std::cout << "\n****************************************************************************************\n";
+		std::cout << "insertion sort:\n";
+		std::cout << "****************************************************************************************\n";
+		Array arr(15);
+		arr.log();
 
-void checkLinearSearch(clrs::Array& arr, int desired) {
-	std::optional<size_t> result = clrs::searching::linear(arr, desired);
+		sorting::insertion(arr);
+		arr.log();
+	}
 
-	if (result.has_value()) {
-		std::cout << "got index " << result.value() << std::endl;
-	} else {
-		std::cout << "element was not found" << std::endl;
+
+	void demoSelectionSort() {
+		std::cout << "\n****************************************************************************************\n";
+		std::cout << "selection sort:\n";
+		std::cout << "****************************************************************************************\n";
+		Array arr(15);
+		arr.log();
+
+		sorting::selection(arr);
+		arr.log();
+	}
+
+
+	void demoHeapSort() {
+		std::cout << "\n****************************************************************************************\n";
+		std::cout << "heapsort:\n";
+		std::cout << "****************************************************************************************\n";
+		Array arr(10);
+		arr.log();
+
+		sorting::heapsort(arr);
+		arr.log();
+	}
+
+
+	void demoLinearSearch() {
+		std::cout << "\n****************************************************************************************\n";
+		std::cout << "linear search:\n";
+		std::cout << "****************************************************************************************\n";
+		Array arr(20);
+		arr.log();
+
+		size_t index = random::randomInt(0, 19);
+		std::cout << "looking for element " << arr[index] << " at index " << index << std::endl;
+		searching::checkSearch(searching::linear, arr, arr[index]);
+
+		int nonexistent = 102;
+		std::cout << "looking for nonexistent element " << nonexistent << std::endl;
+		searching::checkSearch(searching::linear, arr, nonexistent);
 	}
 }
 
 
 int main() {
-	clrs::Array arr1(15);
-
-	std::cout << "insertion sort:\n";
-	arr1.log();
-	clrs::sorting::insertion(arr1);
-	arr1.log();
-
-	std::cout << "\nlinear search:\n";
-	clrs::Array arr2(20);
-	arr2.log();
-	size_t index = clrs::random::randomInt(0, 19);
-	std::cout << "looking for element " << arr2[index] << " at index " << index << std::endl;
-	checkLinearSearch(arr2, arr2[index]);
-	int nonexistent = 102;
-	std::cout << "looking for nonexistent element " << nonexistent << std::endl;
-	checkLinearSearch(arr2, nonexistent);
+	clrs::demoInsertionSort();
+	clrs::demoSelectionSort();
+	clrs::demoHeapSort();
+	clrs::demoLinearSearch();
 
 	return 0;
 }
