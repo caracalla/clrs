@@ -7,8 +7,8 @@
 
 namespace clrs {
 	struct Array {
-		static constexpr int element_lower_bound = 1;
-		static constexpr int element_upper_bound = 99;
+		static constexpr int lower_bound = 1;
+		static constexpr int upper_bound = 99;
 
 		int* data;
 		size_t size;
@@ -16,10 +16,10 @@ namespace clrs {
 		// randomly generate an array
 		Array(size_t size) {
 			this->size = size;
-			data = (int*)malloc(size * sizeof(int));
+			this->data = (int*)malloc(size * sizeof(int));
 			
 			for (size_t i = 0; i < size; i++) {
-				data[i] = random::randomInt(element_lower_bound, element_upper_bound);
+				this->data[i] = random::randomInt(lower_bound, upper_bound);
 			}
 		}
 

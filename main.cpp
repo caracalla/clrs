@@ -29,18 +29,6 @@ namespace clrs {
 	}
 
 
-	void demoHeapSort() {
-		std::cout << "\n****************************************************************************************\n";
-		std::cout << "heapsort:\n";
-		std::cout << "****************************************************************************************\n";
-		Array arr(10);
-		arr.log();
-
-		sorting::heapsort(arr);
-		arr.log();
-	}
-
-
 	void demoLinearSearch() {
 		std::cout << "\n****************************************************************************************\n";
 		std::cout << "linear search:\n";
@@ -56,14 +44,40 @@ namespace clrs {
 		std::cout << "looking for nonexistent element " << nonexistent << std::endl;
 		searching::checkSearch(searching::linear, arr, nonexistent);
 	}
+
+
+	void demoMergeSort() {
+		std::cout << "\n****************************************************************************************\n";
+		std::cout << "merge sort:\n";
+		std::cout << "****************************************************************************************\n";
+		Array arr(15);
+		arr.log();
+
+		sorting::mergeSort(arr);
+		arr.log();
+	}
+
+
+	void demoHeapSort() {
+		std::cout << "\n****************************************************************************************\n";
+		std::cout << "heapsort:\n";
+		std::cout << "****************************************************************************************\n";
+		Array arr(10);
+		arr.log();
+
+		sorting::heapsort(arr);
+		arr.log();
+	}
 }
 
 
 int main() {
-	clrs::demoInsertionSort();
-	clrs::demoSelectionSort();
-	clrs::demoHeapSort();
-	clrs::demoLinearSearch();
+	// clrs::demoInsertionSort();
+	// clrs::demoSelectionSort();
+	// clrs::demoHeapSort();
+	// clrs::demoLinearSearch();
+
+	clrs::demoMergeSort();
 
 	return 0;
 }
