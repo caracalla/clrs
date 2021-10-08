@@ -25,7 +25,7 @@ namespace clrs {
 
 		// non-copyable
 		Array(const Array&) =delete;
-  	Array& operator=(const Array&) =delete;
+		Array& operator=(const Array&) =delete;
 
 		~Array() {
 			free(this->data);
