@@ -56,8 +56,10 @@ namespace clrs {
 					size_t subarray_R_size = end - middle;
 
 					// increase size of each subarray by 1 to hold sentinel value
-					Array subarray_L(subarray_L_size + 1);
-					Array subarray_R(subarray_R_size + 1);
+					Array subarray_L = Array::createZeroed(subarray_L_size + 1);
+					Array subarray_R = Array::createZeroed(subarray_R_size + 1);
+
+					subarray_L.log();
 
 					for (size_t i = 0; i < subarray_L_size; i++) {
 						subarray_L[i] = array[start + i];
@@ -67,8 +69,8 @@ namespace clrs {
 						subarray_R[i] = array[middle + i + 1];
 					}
 
-					subarray_L[subarray_L_size] = Array::upper_bound + 1;
-					subarray_R[subarray_R_size] = Array::upper_bound + 1;
+					subarray_L[subarray_L_size] = array.upper_bound + 1;
+					subarray_R[subarray_R_size] = array.upper_bound + 1;
 
 					int sL_idx = 0;
 					int sR_idx = 0;

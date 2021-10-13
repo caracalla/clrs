@@ -9,7 +9,7 @@ namespace clrs {
 		std::cout << "\n****************************************************************************************\n";
 		std::cout << "insertion sort:\n";
 		std::cout << "****************************************************************************************\n";
-		Array arr(15);
+		Array arr = Array::createRandomized(15);
 		arr.log();
 
 		sorting::insertion(arr);
@@ -21,7 +21,7 @@ namespace clrs {
 		std::cout << "\n****************************************************************************************\n";
 		std::cout << "selection sort:\n";
 		std::cout << "****************************************************************************************\n";
-		Array arr(15);
+		Array arr = Array::createRandomized(15);
 		arr.log();
 
 		sorting::selection(arr);
@@ -33,7 +33,7 @@ namespace clrs {
 		std::cout << "\n****************************************************************************************\n";
 		std::cout << "linear search:\n";
 		std::cout << "****************************************************************************************\n";
-		Array arr(20);
+		Array arr = Array::createRandomized(20);
 		arr.log();
 
 		size_t index = random::randomInt(0, 19);
@@ -50,7 +50,7 @@ namespace clrs {
 		std::cout << "\n****************************************************************************************\n";
 		std::cout << "merge sort:\n";
 		std::cout << "****************************************************************************************\n";
-		Array arr(15);
+		Array arr = Array::createRandomized(15);
 		arr.log();
 
 		sorting::mergeSort(arr);
@@ -62,7 +62,7 @@ namespace clrs {
 		std::cout << "\n****************************************************************************************\n";
 		std::cout << "heapsort:\n";
 		std::cout << "****************************************************************************************\n";
-		Array arr(10);
+		Array arr = Array::createRandomized(15);
 		arr.log();
 
 		sorting::heapsort(arr);
