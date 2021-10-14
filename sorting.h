@@ -59,8 +59,6 @@ namespace clrs {
 					Array subarray_L = Array::createZeroed(subarray_L_size + 1);
 					Array subarray_R = Array::createZeroed(subarray_R_size + 1);
 
-					subarray_L.log();
-
 					for (size_t i = 0; i < subarray_L_size; i++) {
 						subarray_L[i] = array[start + i];
 					}

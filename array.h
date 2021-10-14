@@ -2,6 +2,7 @@
 
 #include "random.h"
 
+#include <iomanip>
 #include <iostream>
 #include <limits>
 #include <vector>
@@ -78,10 +79,10 @@ namespace clrs {
 			std::cout << "[";
 
 			for (size_t i = 0; i < this->size - 1; i++) {
-				std::cout << this->data[i] << ", ";
+				std::cout << std::setw(3) << this->data[i] << ", ";
 			}
 
-			std::cout << this->data[this->size - 1] << "]\n";
+			std::cout << std::setw(3) << this->data[this->size - 1] << "]\n";
 		}
 
 		int& operator[](size_t index) {

@@ -1,5 +1,6 @@
 #include "array.h"
 #include "heap.h"
+#include "misc.h"
 #include "random.h"
 #include "searching.h"
 #include "sorting.h"
@@ -68,6 +69,44 @@ namespace clrs {
 		sorting::heapsort(arr);
 		arr.log();
 	}
+
+	void demoStockPrice() {
+		std::cout << "\n****************************************************************************************\n";
+		std::cout << "stock price (maximum subarray):\n";
+		std::cout << "****************************************************************************************\n";
+		// book example values
+		// std::vector<int> vals = {100, 113, 110, 85, 105, 102, 86, 63, 81, 101, 94, 106, 101, 79, 94, 90, 97};
+		// Array arr = Array::createCopy(vals);
+		
+		// random values
+		Array arr = Array::createRandomized(20, 60, 120);
+
+		Array diffs = Array::createZeroed(arr.size - 1);
+
+		// set up the list of differences in price
+		for (size_t i = 0; i < diffs.size; i++) {
+			diffs[i] = arr[i + 1] - arr[i];
+		}
+
+		Array days = Array::createZeroed(arr.size);
+		
+		for (size_t i = 0; i < days.size; i++) {
+			days[i] = i;
+		}
+
+		std::cout << "day:          ";
+		days.log();
+		std::cout << "stock prices: ";
+		arr.log();
+		std::cout << "price diffs:       ";
+		diffs.log();
+
+		maxSubarray::Result result = maxSubarray::find(diffs, 0, diffs.size - 1);
+
+		// result.start, indicates when to buy, but result.end indicates the day to sell AFTER (so add 1 to end)
+		// why?
+		std::cout << "buy on " << result.start << ", sell on " << result.end + 1 << " for a profit of " << result.sum << std::endl;
+	}
 }
 
 
@@ -76,8 +115,9 @@ int main() {
 	// clrs::demoSelectionSort();
 	// clrs::demoHeapSort();
 	// clrs::demoLinearSearch();
+	// clrs::demoMergeSort();
 
-	clrs::demoMergeSort();
+	clrs::demoStockPrice();
 
 	return 0;
 }
