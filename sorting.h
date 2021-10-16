@@ -11,7 +11,7 @@ namespace clrs {
 			// invariant: At the start of each iteration of the for loop, the
 			// subarray array[0 .. i - 1] consists of elements originally in
 			// array[0 .. i - 1] but in sorted order
-			for (size_t i = 1; i < array.size; i++) {
+			for (int i = 1; i < array.size; i++) {
 				int key = array[i];
 				int j = i - 1;
 
@@ -24,15 +24,16 @@ namespace clrs {
 			}
 		}
 
+
 		// Selection sort: Chapter 2, page 29
 		void selection(Array& array) {
 			// invariant: the subarray array[0 .. i - 1] is sorted, and all values
 			// within that subarray are smaller than all values outside that subarray
-			for (size_t i = 0; i < array.size - 1; i++) {
+			for (int i = 0; i < array.size - 1; i++) {
 				int current = array[i];
 				int min_index = i;
 
-				for (size_t j = i + 1; j < array.size; j++) {
+				for (int j = i + 1; j < array.size; j++) {
 					if (array[j] < array[min_index]) {
 						min_index = j;
 					}
@@ -43,27 +44,28 @@ namespace clrs {
 			}
 		}
 
+
 		// Merge sort: Chapter 2, page 30
-		void mergeSort(Array& array) {
+		void merge(Array& array) {
 			// gotta specify the type in full, or the compiler complains since this
-			// is called recursively
-			using msi = std::function<void(size_t, size_t)>;
+			// calls itself recursively
+			using msi = std::function<void(int, int)>;
 			// AND we need to do full capture
-			msi mergeSortImpl = [&](size_t start, size_t end) {
+			msi mergeSortImpl = [&](int start, int end) {
 				// merge subroutine
-				auto merge = [&array](size_t start, size_t middle, size_t end) {
-					size_t subarray_L_size = middle - start + 1;
-					size_t subarray_R_size = end - middle;
+				auto mergeSubarrays = [&array](int start, int middle, int end) {
+					int subarray_L_size = middle - start + 1;
+					int subarray_R_size = end - middle;
 
 					// increase size of each subarray by 1 to hold sentinel value
 					Array subarray_L = Array::createZeroed(subarray_L_size + 1);
 					Array subarray_R = Array::createZeroed(subarray_R_size + 1);
 
-					for (size_t i = 0; i < subarray_L_size; i++) {
+					for (int i = 0; i < subarray_L_size; i++) {
 						subarray_L[i] = array[start + i];
 					}
 
-					for (size_t i = 0; i < subarray_R_size; i++) {
+					for (int i = 0; i < subarray_R_size; i++) {
 						subarray_R[i] = array[middle + i + 1];
 					}
 
@@ -77,7 +79,7 @@ namespace clrs {
 					// elements of both L and R, in sorted order.  L[sL_idx] and
 					// R[sR_idx] are the smallest elements of each that have not been
 					// copied back into array
-					for (size_t i = start; i <= end; i++) {
+					for (int i = start; i <= end; i++) {
 						if (subarray_L[sL_idx] <= subarray_R[sR_idx]) {
 							array[i] = subarray_L[sL_idx];
 							sL_idx += 1;
@@ -90,23 +92,24 @@ namespace clrs {
 				};
 
 				if (start < end) {
-					size_t middle = (start + end) / 2;
+					int middle = (start + end) / 2;
 
 					mergeSortImpl(start, middle);
 					mergeSortImpl(middle + 1, end);
-					merge(start, middle, end);
+					mergeSubarrays(start, middle, end);
 				}
 			};
 
 			mergeSortImpl(0, array.size - 1);
 		}
 
+
 		// Heap sort: Chapter 6, page 151
 		void heapsort(Array& array) {
 			Heap heap(&array);
 			heap.buildMaxHeap();
 
-			for (size_t i = heap.size - 1; i >= 1; i--) {
+			for (int i = heap.size - 1; i >= 1; i--) {
 				heap.swap(0, i);
 				heap.heap_size -= 1;
 				heap.maxHeapify(0);

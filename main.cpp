@@ -54,7 +54,7 @@ namespace clrs {
 		Array arr = Array::createRandomized(15);
 		arr.log();
 
-		sorting::mergeSort(arr);
+		sorting::merge(arr);
 		arr.log();
 	}
 
@@ -69,6 +69,7 @@ namespace clrs {
 		sorting::heapsort(arr);
 		arr.log();
 	}
+
 
 	void demoStockPrice() {
 		std::cout << "\n****************************************************************************************\n";

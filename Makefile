@@ -1,4 +1,4 @@
-CFLAGS = -std=c++17 -O0
+CFLAGS = -std=c++17 -O0 -g
 LDFLAGS =
 
 .PHONY: build clean run

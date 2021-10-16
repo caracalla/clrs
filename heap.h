@@ -25,6 +25,7 @@ namespace clrs {
 			this->array->log();
 		}
 
+		// never used, could underflow if index is 0 due to size_t
 		static size_t parent(size_t index) {
 			return index / 2 - 1;
 		}

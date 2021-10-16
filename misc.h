@@ -7,25 +7,22 @@
 namespace clrs {
 	namespace maxSubarray {
 		struct Result {
-			size_t start;
-			size_t end;
+			int start;
+			int end;
 			int sum;
 		};
 
 		// Maximum-subarray problem: Chapter 4, page 68
 		Result findCrossing(
 				Array& array,
-				size_t low,
-				size_t mid,
-				size_t high) {
+				int low,
+				int mid,
+				int high) {
 			Result result;
 			int sum = 0;
 			int left_sum = std::numeric_limits<int>::min();
 
-			// for some reason, if mid and high are both 0, problems happen unless
-			// that i >= 0 conditional is there
-			// why?
-			for (int i = mid; i >= low && i >= 0; i--) {
+			for (int i = mid; i >= low; i--) {
 				sum += array[i];
 
 				if (sum > left_sum) {
@@ -51,12 +48,12 @@ namespace clrs {
 			return result;
 		}
 
-		Result find(Array& array, size_t low, size_t high) {
+		Result find(Array& array, int low, int high) {
 			if (low == high) {
 				return Result{low, high, array[low]};
 			}
 
-			size_t mid = (low + high) / 2;
+			int mid = (low + high) / 2;
 
 			Result left = find(array, low, mid);
 			Result right = find(array, mid + 1, high);
