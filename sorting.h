@@ -115,5 +115,45 @@ namespace clrs {
 				heap.maxHeapify(0);
 			}
 		}
+
+
+		// Quicksort: Chapter 7, page 170
+		void quick(Array& array) {
+			std::function<int(int, int)> partition = [&](
+					int start,
+					int end) {
+				int x = array[end]; // pivot
+				int i = start;
+
+				// invariant: At the start of each iteration, for any index k:
+				// * if p <= k <= i, then A[k] <= x
+				// * if i + 1 <= k <= j - 1, then A[k] > x
+				// * if k == r, then A[k] == x
+				for (int j = start; j < end; j++) {
+					if (array[j] <= x) {
+						int temp = array[j];
+						array[j] = array[i];
+						array[i] = temp;
+						i += 1;
+					}
+				}
+
+				array[end] = array[i];
+				array[i] = x;
+
+				return i;
+			};
+
+			using qsi = std::function<void(int, int)>;
+			qsi quickSortImpl = [&](int start, int end) {
+				if (start < end) {
+					int middle = partition(start, end);
+					quickSortImpl(start, middle - 1);
+					quickSortImpl(middle + 1, end);
+				}
+			};
+
+			quickSortImpl(0, array.size - 1);
+		}
 	}
 }

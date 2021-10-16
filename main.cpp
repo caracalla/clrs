@@ -108,6 +108,18 @@ namespace clrs {
 		// why?
 		std::cout << "buy on " << result.start << ", sell on " << result.end + 1 << " for a profit of " << result.sum << std::endl;
 	}
+
+
+	void demoQuickSort() {
+		std::cout << "\n****************************************************************************************\n";
+		std::cout << "quicksort:\n";
+		std::cout << "****************************************************************************************\n";
+		Array arr = Array::createRandomized(15);
+		arr.log();
+
+		sorting::quick(arr);
+		arr.log();
+	}
 }
 
 
@@ -117,8 +129,9 @@ int main() {
 	// clrs::demoHeapSort();
 	// clrs::demoLinearSearch();
 	// clrs::demoMergeSort();
+	// clrs::demoStockPrice();
 
-	clrs::demoStockPrice();
+	clrs::demoQuickSort();
 
 	return 0;
 }
