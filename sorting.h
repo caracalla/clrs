@@ -127,8 +127,9 @@ namespace clrs {
 
 				// invariant: At the start of each iteration, for any index k:
 				// * if p <= k <= i, then A[k] <= x
-				// * if i + 1 <= k <= j - 1, then A[k] > x
+				// * if i + 1 <= k < j, then A[k] > x
 				// * if k == r, then A[k] == x
+				// * if j <= k < r, then we don't care about it yet
 				for (int j = start; j < end; j++) {
 					if (array[j] <= x) {
 						int temp = array[j];

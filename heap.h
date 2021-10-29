@@ -18,8 +18,8 @@ namespace clrs {
 		}
 
 		// non-copyable
-		Heap(const Heap&) =delete;
-		Heap& operator=(const Heap&) =delete;
+		Heap(const Heap&) = delete;
+		Heap& operator=(const Heap&) = delete;
 
 		void log() {
 			this->array->log();
