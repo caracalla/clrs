@@ -2,6 +2,7 @@
 
 #include "random.h"
 
+#include <cstring>
 #include <iomanip>
 #include <iostream>
 #include <limits>
